@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>サインアップ</title>
+{% endblock %}
+
+{% block content %}
+<h1>新規登録</h1>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<form action="{{ url_for('user.register') }}" method="post">
+  <div>
+    <label for="user">ユーザーネーム</label><br>
+    <input type="text" name="username" id="user" required>
+  </div>
+  <div>
+    <label for="pass">パスワード</label><br>
+    <input type='password' name="password" id="pass" required minlength="4">
+  </div>
+  <button>登録</button>
+</form>
+{% endblock %}
